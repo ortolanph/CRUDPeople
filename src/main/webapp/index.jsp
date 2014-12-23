@@ -9,5 +9,12 @@
     </head>
     <body ng-controler="TestController">
         <h1>Test Service Test</h1>
+        
+        <h2>test service</h2>
+        <form ng-submit="callTest()">
+            <input type="submit" value="Call test service" />
+        </form>
+        <p><strong>Message:</strong>{{testReturn.message}}</p>
+        <p><strong>Status</strong>{{testReturn.status}}</p>
     </body>
 </html>

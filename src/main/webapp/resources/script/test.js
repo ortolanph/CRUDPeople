@@ -6,11 +6,14 @@ testApp.controller('TestController', ['$scope', '$http',
     function($scope, $http) {
         
         $scope.callTest = function() {
+            console.log('Calling URL: ' + defaultUrl + 'test');
             $http.get(defaultUrl + 'test')
                 .succes(function(data, status) {
+                    console.log("[OK]");
                     $scope.testReturn = {'message' : data, 'status': status };
                 })
                 .error(function(data, status) {
+                    console.log("[FAIL]");
                     $scope.testReturn = {'message' : data, 'status': status };
                 });
         }
@@ -20,7 +23,7 @@ testApp.controller('TestController', ['$scope', '$http',
                 .success(function(data, status) {
                     $scope.echoReturn = {'message': data, 'status': status };
                 })
-                .error(function(data, status)) {
+                .error(function(data, status) {
                     $scope.echoReturn = {'message': data, 'status': status };
                 });
         }
@@ -30,7 +33,7 @@ testApp.controller('TestController', ['$scope', '$http',
                 .success(function(data, status) {
                     $scope.apiReturn = {'urls': data, 'status': status };
                 })
-                .error(function(data, status)) {
+                .error(function(data, status) {
                     $scope.apiReturn = {'url': data, 'status': status };
                 });
         }
