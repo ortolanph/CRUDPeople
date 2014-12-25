@@ -1,10 +1,9 @@
 package org.crudpeople.controller;
 
-import com.google.common.collect.Lists;
-
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.crudpeople.external.simple.ArrayResult;
+import org.crudpeople.external.simple.SimpleResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,28 +19,40 @@ public class TestController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public @ResponseBody
-    String test() {
+    SimpleResult test() {
         LOGGER.log(Level.INFO, "Callling /test service");
-        return "testing";
+        
+        SimpleResult result = new SimpleResult();
+        result.setResult("testing");
+        
+        return result;
     }
 
     @RequestMapping(value = "/echo/{message}", method = RequestMethod.GET)
     public @ResponseBody
-    String echo(@PathVariable String message) {
+    SimpleResult echo(@PathVariable String message) {
         LOGGER.log(Level.INFO, "Callling /echo service with {0} parameter", message);
-        return message;
+        
+        SimpleResult result = new SimpleResult();
+        result.setResult(message);
+        
+        return result;
     }
 
     @RequestMapping(value = "/api", method = RequestMethod.GET)
     public @ResponseBody
-    List<String> api() {
+    ArrayResult api() {
         LOGGER.log(Level.INFO, "Callling /api service");
-        List<String> urls = Lists.newArrayList(
+        
+        String[] urls = {
                 "/crudpeople/testservice/test",
                 "/crudpeople/testservice/echo/{message}",
                 "/crudpeople/testservice/api"
-        );
+        };
+        
+        ArrayResult result = new ArrayResult();
+        result.setResult(urls);
 
-        return urls;
+        return result;
     }
 }
