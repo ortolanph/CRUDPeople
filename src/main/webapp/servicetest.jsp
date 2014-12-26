@@ -18,5 +18,24 @@
             <p><strong>Message: </strong>{{testReturn.message}}</p>
             <p><strong>Status: </strong>{{testReturn.status}}</p>
         </fieldset>
+
+        <fieldset>
+            <legend>The <code>echo</code> service</legend>
+            <form ng-submit="echo()">
+                Message to echo: <input ng-model="echoMessage" />
+                <input type="submit" value="Call echo/{{echoMessage}} service" />
+            </form>
+            <p><strong>Message: </strong>{{echoReturn.message}}</p>
+            <p><strong>Status: </strong>{{echoReturn.status}}</p>
+        </fieldset>
+        
+        <fieldset>
+            <legend>The <code>api</code> service</legend>
+            <form ng-submit="api()">
+                <input type="submit" value="Call api service" />
+            </form>
+            <p><strong>Message: </strong><ol><li ng-repeat="url in apiReturn.urls">{{url}}</li></ol></p>
+            <p><strong>Status: </strong>{{apiReturn.status}}</p>
+        </fieldset>
     </body>
 </html>
