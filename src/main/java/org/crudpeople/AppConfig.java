@@ -1,5 +1,7 @@
 package org.crudpeople;
 
+import org.crudpeople.dao.PessoaDAO;
+import org.crudpeople.dao.impl.PessoaDAOImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 //@PropertySource("crudpeople.properties")
-@ComponentScan(basePackages = {"org.crudpeople.controller"}) //, "org.crudpeople.service"})
+@ComponentScan(basePackages = {"org.crudpeople.controller", "org.crudpeople.service"})
 public class AppConfig extends WebMvcConfigurationSupport {
 
 //    @Autowired
@@ -49,6 +51,11 @@ public class AppConfig extends WebMvcConfigurationSupport {
         resolver.setSuffix(".jsp");
 
         return resolver;
+    }
+    
+    @Bean
+    public PessoaDAO pessoaDAO() {
+        return new PessoaDAOImpl();
     }
 }
 
