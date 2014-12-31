@@ -18,6 +18,23 @@
         <jetty.maven.plugin>8.1.5.v20120716</jetty.maven.plugin>
     </properties>
     
+    <developers>
+        <developer>
+            <id>ortolanph</id>
+            <name>Paulo Henrique Ortolan</name>
+            <email>paulo.ortolan@gmail.com</email>
+            <timezone>-3</timezone>
+            <roles>
+                <role>
+                    Arquiteto
+                </role>
+                <role>
+                    Desenvolvedor
+                </role>
+            </roles>
+        </developer>
+    </developers>
+    
     <repositories>
         <repository>
             <id>SpringSource Snapshots</id>
@@ -95,6 +112,18 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>4.1.1.RELEASE</version>
+        </dependency>
+        
+        <!-- Persistence Framework -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>1.7.0.DATAMONGO-1118-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>2.12.4</version>
         </dependency>
     </dependencies>
 

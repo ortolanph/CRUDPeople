@@ -9,6 +9,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class CRUDPeopleWebInitializer implements WebApplicationInitializer {
+
     @Override
     public void onStartup(ServletContext sc) throws ServletException {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();

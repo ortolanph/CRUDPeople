@@ -1,13 +1,19 @@
 package org.crudpeople.entities;
 
 import java.util.Objects;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "pessoas")
 public class Pessoa {
+    @Id
     private Integer id;
     private String nome;
     private String endereco;
     private String telefone;
     
+    @Transient
     private static final String TO_STRING = "Pessoa {id=%d, nome=%s, endereco=%s, telefone=%s }";
 
     public Pessoa() {

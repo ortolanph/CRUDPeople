@@ -44,7 +44,7 @@ public class PessoaController {
     public @ResponseBody
     PessoaListResult findAll() {
         LOGGER.log(Level.INFO, "Serviço /findAll");
-        
+
         return renderResult(service.findAll());
     }
 
@@ -54,33 +54,33 @@ public class PessoaController {
         LOGGER.log(Level.INFO, "Serviço /find/{0}", nome);
 
         List<Pessoa> pessoas = service.find(nome);
-        
+
         return renderResult(pessoas);
     }
-    
+
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public @ResponseBody
     PessoaResult find(@PathVariable Integer id) {
         LOGGER.log(Level.INFO, "Serviço /findById/{0}", id);
 
         Pessoa pessoa = service.findById(id);
-        
+
         PessoaResult result = new PessoaResult();
-        
+
         result.setPessoa(pessoa);
-        
+
         Result innerResult = new Result();
-        
-        if(pessoa != null) {
+
+        if (pessoa != null) {
             innerResult.setMessage("Pessoa recuperada com sucesso!");
             innerResult.setStatus(ResultStatus.SUCCESS);
         } else {
             innerResult.setMessage("Houve um erro ao recuperar a pessoa");
             innerResult.setStatus(ResultStatus.FAIL);
         }
-        
+
         result.setResult(innerResult);
-        
+
         return result;
     }
 
@@ -91,40 +91,37 @@ public class PessoaController {
         Pessoa pessoaAtualizada = service.update(pessoa);
 
         PessoaResult result = new PessoaResult();
-        
+
         result.setPessoa(pessoaAtualizada);
-        
+
         Result innerResult = new Result();
-        
-        if(pessoa != null) {
+
+        if (pessoa != null) {
             innerResult.setMessage("Pessoa atualizada com sucesso!");
             innerResult.setStatus(ResultStatus.SUCCESS);
         } else {
             innerResult.setMessage("Houve um erro ao atualizar a pessoa");
             innerResult.setStatus(ResultStatus.FAIL);
         }
-        
+
         result.setResult(innerResult);
-        
+
         return result;
     }
-    
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public @ResponseBody
     SimpleResult delete(@PathVariable Integer id) {
         LOGGER.log(Level.INFO, "Serviço /delete/{0}", id);
-        
+
         SimpleResult result = new SimpleResult();
-        
-        if(service.delete(id)) {
-            result.setResult("Deletado com sucesso");
-        } else {
-            result.setResult("Houve um problema ao deletar");
-        }
-        
+
+        service.delete(id);
+        result.setResult("Deletado com sucesso");
+
         return result;
     }
-    
+
     private PessoaListResult renderResult(List<Pessoa> pessoas) {
         PessoaListResult result = new PessoaListResult();
 
