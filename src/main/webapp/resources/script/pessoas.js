@@ -3,6 +3,7 @@ var pessoaApp = angular.module('pessoaApp', []);
 pessoaApp.controller('PessoaController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.defaultUrl = "http://localhost:8080/crudpeople/peopleservice/";
+        $scope.deleteMessage = '';
 
         $scope.createPessoa = function () {
             console.log('Calling URL: ' + $scope.defaultUrl + 'create');
@@ -22,12 +23,12 @@ pessoaApp.controller('PessoaController', ['$scope', '$http', function ($scope, $
         };
         
         $scope.find = function() {
-            var finder = 'find/';
+            var finder = '';
             
-            if($scope.nome === undefined) {
+            if($scope.isEmpty($scope.nome)) {
                 finder = 'findAll';
             } else {
-                finder += $scope.nome;
+                finder += 'find/' + $scope.nome;
             }
             
             console.log('Calling URL: ' + $scope.defaultUrl + finder);
@@ -36,6 +37,10 @@ pessoaApp.controller('PessoaController', ['$scope', '$http', function ($scope, $
                     .success(function (data) {
                         console.log('[OK]');
                         $scope.resultadoPesquisa = data;
+                        
+                        if(!$scope.isEmpty($scope.deleteMessage)) {
+                            $scope.resultadoPesquisa.result.message = $scope.deleteMessage;
+                        }
                     })
                     .error(function (data) {
                         console.log('[FAIL]');
@@ -43,19 +48,58 @@ pessoaApp.controller('PessoaController', ['$scope', '$http', function ($scope, $
                     });
         };
 
-        $scope.findById = function() {
-            console.log('Calling URL: ' + $scope.defaultUrl + 'findById/' + $scope.id);
+        $scope.findById = function(id) {
+            console.log('Calling URL: ' + $scope.defaultUrl + 'findById/' + id);
             
-        }
-        
-        $scope.remove = function() {
-            console.log('Calling URL: ' + $scope.defaultUrl + 'remove/' + $scope.id);
-            
+            $http.get($scope.defaultUrl + 'findById/' + id)
+                    .success(function (data) {
+                        console.log('[OK]');
+                        $scope.resultadoBusca = data;
+                    })
+                    .error(function (data) {
+                        console.log('[FAIL]');
+                        $scope.resultadoBusca = {'result' : {'status': 'FAIL', 'message' : data }};
+                    });
         }
         
         $scope.update = function() {
-            console.log('Calling URL: ' + $scope.defaultUrl + 'update/' + $scope.id);
+            console.log('Calling URL: ' + $scope.defaultUrl + 'update');
+
+            var data = {'id': $scope.resultadoBusca.pessoa.id, 
+                        'nome': $scope.resultadoBusca.pessoa.nome, 
+                        'endereco': $scope.resultadoBusca.pessoa.endereco, 
+                        'telefone': $scope.resultadoBusca.pessoa.telefone};
+
+            $http.post($scope.defaultUrl + 'update', data)
+                    .success(function (data) {
+                        console.log('[OK]');
+                        $scope.resultadoBusca = data;
+                    })
+                    .error(function (data, status) {
+                        console.log('[FAIL]');
+                        $scope.resultadoBusca = {'result' : {'status': 'FAIL', 'message' : data }};
+                    });
+        }
+        
+        $scope.delete = function(id) {
+            console.log('Calling URL: ' + $scope.defaultUrl + 'delete/' + id);
             
+            $http.get($scope.defaultUrl + 'delete/' + id)
+                    .success(function (data) {
+                        console.log('[OK]');
+                        $scope.deleteMessage = data.result;
+                        $scope.find();
+                    })
+                    .error(function (data) {
+                        console.log('[FAIL]');
+                        $scope.resultadoPesquisa = {'result' : {'status': 'FAIL', 'message' : data }};
+                    });
+            
+        }
+        
+        $scope.isEmpty = function(value) {
+            console.log('Verifying id value isEmpty = ' + value);
+            return (value === undefined || value == null || value.length <= 0) ? true : false;
         }
 
     }]);

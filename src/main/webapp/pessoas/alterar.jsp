@@ -6,32 +6,33 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
         <script src="../resources/script/pessoas.js"></script>
         <link rel="stylesheet" href="../resources/style/crudpeople.css" />
-        <title>Cadastrar Pessoa</title>
+        <title>Alterar Pessoa</title>
     </head>
-    <body ng-controller="PessoaController">
-        <h1>Cadastrar Pessoa</h1>
+    <body ng-controller="PessoaController" ng-init="findById(${param['id']})">
+        <h1>Alterar Pessoa</h1>
         <fieldset>
             <legend>Dados da Pessoa</legend>
-            <p>{{message.result}}</p>
-            <form ng-submit="createPessoa()">
+            <p ng-if="resultadoBusca.result.message">[{{resultadoBusca.result.status}}]: {{resultadoBusca.result.message}}</p>
+            <form ng-submit="update()">
+                <input type="text" ng-model="resultadoBusca.pessoa.id" />
                 <table>
                     <tr>
                         <td><strong>Nome</strong></td>
-                        <td><input type="text" ng-model="nome" size="50" /></td>
+                        <td><input type="text" ng-model="resultadoBusca.pessoa.nome" size="50" /></td>
                     </tr>
                     <tr>
                         <td><strong>Endereco</strong></td>
-                        <td><input type="text" ng-model="endereco" size="50" /></td>
+                        <td><input type="text" ng-model="resultadoBusca.pessoa.endereco" size="50" /></td>
                     </tr>
                     <tr>
                         <td><strong>Telefone</strong></td>
-                        <td><input type="tel" ng-model="telefone" 
+                        <td><input type="tel" ng-model="resultadoBusca.pessoa.telefone" 
                                    pattern="[\(]\d{2}[\)]\d{5}[\-]\d{4}" 
                                    title="Telefone (Formato: (99)99999-9999)"
                                    size="14"/></td>
                     </tr>
                 </table>
-                <p><input type="submit" value="Cadastrar" /></p>
+                <p><input type="submit" value="Alterar" /></p>
             </form>
         </fieldset>
         <p><a href="pessoas.jsp">Voltar</a></p>

@@ -35,10 +35,10 @@
                 <td style="color: white; background: black; text-align: center"><strong></strong></td>
             </tr>
             <tr ng-repeat="pessoa in resultadoPesquisa.pessoas">
-                <td>{{pessoa.nome}}</td>
+                <td><a href="alterar.jsp?id={{pessoa.id}}">{{pessoa.nome}}</a></td>
                 <td>{{pessoa.endereco}}</td>
                 <td>{{pessoa.telefone}}</td>
-                <td></td>
+                <td><a ng-click="delete(pessoa.id)">Excluir</a></td>
             </tr>
         </table>
     </p>
