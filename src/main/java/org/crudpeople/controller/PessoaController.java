@@ -60,7 +60,7 @@ public class PessoaController {
 
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    PessoaResult find(@PathVariable Integer id) {
+    PessoaResult findById(@PathVariable String id) {
         LOGGER.log(Level.INFO, "Serviço /findById/{0}", id);
 
         Pessoa pessoa = service.findById(id);
@@ -111,7 +111,7 @@ public class PessoaController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    SimpleResult delete(@PathVariable Integer id) {
+    SimpleResult delete(@PathVariable String id) {
         LOGGER.log(Level.INFO, "Serviço /delete/{0}", id);
 
         SimpleResult result = new SimpleResult();

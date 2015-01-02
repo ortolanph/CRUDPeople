@@ -1,32 +1,31 @@
 package org.crudpeople.entities;
 
 import java.util.Objects;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "pessoas")
 public class Pessoa {
-    @Id
-    private Integer id;
+
+    private String id;
     private String nome;
     private String endereco;
     private String telefone;
     
     @Transient
-    private static final String TO_STRING = "Pessoa {id=%d, nome=%s, endereco=%s, telefone=%s }";
+    private static final String TO_STRING = "Pessoa {id=%s, nome=%s, endereco=%s, telefone=%s }";
 
     public Pessoa() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
+    public String getId() {
+        return id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -54,7 +53,6 @@ public class Pessoa {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
         hash = 17 * hash + Objects.hashCode(this.nome);
         return hash;
     }
@@ -68,9 +66,6 @@ public class Pessoa {
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@PropertySource("mongodb.properties")
+@PropertySource("classpath:mongodb.properties")
 @EnableMongoRepositories(basePackages = "org.crudpeople.repositories")
 @ComponentScan(basePackages = {"org.crudpeople.controller", "org.crudpeople.service"})
 public class AppConfig extends WebMvcConfigurationSupport {

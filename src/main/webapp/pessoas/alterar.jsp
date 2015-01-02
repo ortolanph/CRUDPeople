@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../resources/style/crudpeople.css" />
         <title>Alterar Pessoa</title>
     </head>
-    <body ng-controller="PessoaController" ng-init="findById(${param['id']})">
+    <body ng-controller="PessoaController" ng-init="findById('${param['id']}')">
         <h1>Alterar Pessoa</h1>
         <fieldset>
             <legend>Dados da Pessoa</legend>

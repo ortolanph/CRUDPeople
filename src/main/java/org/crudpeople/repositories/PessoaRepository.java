@@ -6,7 +6,7 @@ import org.springframework.data.repository.RepositoryDefinition;
 
 @RepositoryDefinition(
     domainClass=org.crudpeople.entities.Pessoa.class,
-    idClass=java.lang.Integer.class)
-public interface PessoaRepository extends MongoRepository<Pessoa, Integer>{
+    idClass=java.lang.String.class)
+public interface PessoaRepository extends MongoRepository<Pessoa, String>{
     
 }

@@ -41,12 +41,12 @@ public class PessoaService {
         return repository.findAll();
     }
     
-    public Pessoa findById(Integer id) {
+    public Pessoa findById(String id) {
         LOGGER.log(Level.INFO, "findById");
         return repository.findOne(id);
     }
 
-    public void delete(Integer id) {
+    public void delete(String id) {
         LOGGER.log(Level.INFO, "delete");
         repository.delete(id);
     }
