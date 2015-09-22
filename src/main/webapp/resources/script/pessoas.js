@@ -7,15 +7,22 @@ pessoaApp.controller('PessoaController', ['$scope', '$http', function ($scope, $
 
         $scope.createPessoa = function () {
 
-            var data = {'nome': $scope.nome, 'endereco': $scope.endereco, 'telefone': $scope.telefone};
+            if(!$scope.isEmpty($scope.nome) && !$scope.isEmpty($scope.nome) && !$scope.isEmpty($scope.nome) ) {
 
-            $http.post($scope.defaultUrl + 'create', data)
-                    .success(function (data) {
-                        $scope.message = data;
-                    })
-                    .error(function (data, status) {
-                        $scope.message = {'result' : data + status};
-                    });
+                $scope.nome = $scope.nome.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+                var data = {'nome': $scope.nome, 'endereco': $scope.endereco, 'telefone': $scope.telefone};
+
+                $http.post($scope.defaultUrl + 'create', data)
+                        .success(function (data) {
+                            $scope.message = data;
+                        })
+                        .error(function (data, status) {
+                            $scope.message = {'result' : data + status};
+                        });
+            } else {
+                $scope.message = {'result': 'Campos não preenchidos'}
+            }
         };
         
         $scope.find = function() {
