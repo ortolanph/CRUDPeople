@@ -4,8 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
-        <script src="../resources/script/pessoas.js"></script>
-        <link rel="stylesheet" href="../resources/style/crudpeople.css" />
+        <script src="${pageContext.request.contextPath}/resources/script/pessoas.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style/crudpeople.css" />
         <title>Cadastro de pessoas</title>
     </head>
     <body ng-controller="PessoaController">
@@ -35,7 +35,7 @@
                 <td style="color: white; background: black; text-align: center"><strong></strong></td>
             </tr>
             <tr ng-repeat="pessoa in resultadoPesquisa.pessoas">
-                <td><a href="alterar.jsp?id={{pessoa.id}}">{{pessoa.nome}}</a></td>
+                <td><a href="${pageContext.request.contextPath}/pessoas/alterar.jsp?id={{pessoa.id}}">{{pessoa.nome}}</a></td>
                 <td>{{pessoa.endereco}}</td>
                 <td>{{pessoa.telefone}}</td>
                 <td><a ng-click="delete(pessoa.id)">Excluir</a></td>
@@ -43,6 +43,6 @@
         </table>
     </p>
 
-    <p><a href="cadastrar.jsp">Cadastrar</a></p>
+    <p><a href="${pageContext.request.contextPath}/pessoas/cadastrar.jsp">Cadastrar</a></p>
 </body>
 </html>

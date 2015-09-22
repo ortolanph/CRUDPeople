@@ -56,6 +56,9 @@ public class PessoaService {
         return repository.save(pessoa);
     }
 
+    public void wipe() {
+        repository.deleteAll();
+    }
 
 
 }

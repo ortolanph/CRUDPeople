@@ -4,8 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
-        <script src="../resources/script/pessoas.js"></script>
-        <link rel="stylesheet" href="../resources/style/crudpeople.css" />
+        <script src="${pageContext.request.contextPath}/resources/script/pessoas.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style/crudpeople.css" />
         <title>Cadastrar Pessoa</title>
     </head>
     <body ng-controller="PessoaController">
@@ -34,6 +34,6 @@
                 <p><input type="submit" value="Cadastrar" /></p>
             </form>
         </fieldset>
-        <p><a href="pessoas.jsp">Voltar</a></p>
+        <p><a href="${pageContext.request.contextPath}/pessoas/pessoas.jsp">Voltar</a></p>
     </body>
 </html>

@@ -3,6 +3,8 @@ package org.crudpeople.controller;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.google.common.collect.Lists;
 import org.crudpeople.entities.Pessoa;
 import org.crudpeople.external.Result;
 import org.crudpeople.external.ResultStatus;
@@ -118,6 +120,25 @@ public class PessoaController {
 
         service.delete(id);
         result.setResult("Deletado com sucesso");
+
+        return result;
+    }
+
+    @RequestMapping(value = "/wipe", method = RequestMethod.DELETE)
+    public @ResponseBody
+    SimpleResult wipeData() {
+        LOGGER.log(Level.INFO, "Serviço /wipe");
+
+        SimpleResult result = new SimpleResult();
+
+        service.wipe();
+        List<Pessoa> pessoas = service.findAll();
+
+        if(pessoas.isEmpty()) {
+            result.setResult("Dados deletados");
+        } else {
+            result.setResult("Problema ao deletar pessoas");
+        }
 
         return result;
     }
