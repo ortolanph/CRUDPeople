@@ -1,7 +1,83 @@
-/*
-    Folha de estilo genérica
-*/
-
 body {
     font-family: sans-serif;
+}
+
+#wrap {
+	width: 98%;
+	margin: 0 auto;
+}
+
+fieldset {
+ border: 2px solid #000;
+}
+
+/* --- */
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-bottom: 2px solid #000;
+}
+
+tr th {
+	font-weight: bold;
+	width: 30%;
+	border-bottom: 2px solid #000;
+}
+
+tr th:last-child {
+	width: 10%;
+}
+
+tr:nth-child(even){
+	background-color: #eee
+}
+
+td { 
+	padding: 3px;
+	margin: 0;
+	border-collapse: collapse;
+}
+
+tr td:last-child {
+    text-align: center;
+}
+
+/* --- */
+
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.info, .success, .warning , .error {
+    padding:10px 0;
+	border-radius: 5px;
+    text-align: center;
+}
+
+/* --- */
+
+form span {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+    font-weight: bold;
+}
+
+form span.text {
+	display: inline;
+	text-align: left;
+    font-weight: normal;
 }

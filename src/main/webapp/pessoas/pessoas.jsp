@@ -27,22 +27,22 @@
 
         <p style="text-align: center">
             <strong>Resultados</strong>
-        <table>
-            <tr>
-                <td style="color: white; background: black; text-align: center"><strong>Nome</strong></td>
-                <td style="color: white; background: black; text-align: center"><strong>Endereço</strong></td>
-                <td style="color: white; background: black; text-align: center"><strong>Telefone</strong></td>
-                <td style="color: white; background: black; text-align: center"><strong></strong></td>
-            </tr>
-            <tr ng-repeat="pessoa in resultadoPesquisa.pessoas">
-                <td><a href="${pageContext.request.contextPath}/pessoas/alterar.jsp?id={{pessoa.id}}">{{pessoa.nome}}</a></td>
-                <td>{{pessoa.endereco}}</td>
-                <td>{{pessoa.telefone}}</td>
-                <td><a ng-click="delete(pessoa.id)">Excluir</a></td>
-            </tr>
-        </table>
-    </p>
+            <table>
+                <tr>
+                    <td style="color: white; background: black; text-align: center"><strong>Nome</strong></td>
+                    <td style="color: white; background: black; text-align: center"><strong>Endereço</strong></td>
+                    <td style="color: white; background: black; text-align: center"><strong>Telefone</strong></td>
+                    <td style="color: white; background: black; text-align: center"><strong></strong></td>
+                </tr>
+                <tr ng-repeat="pessoa in resultadoPesquisa.pessoas">
+                    <td><a href="${pageContext.request.contextPath}/pessoas/alterar.jsp?id={{pessoa.id}}">{{pessoa.nome}}</a></td>
+                    <td>{{pessoa.endereco}}</td>
+                    <td>{{pessoa.telefone}}</td>
+                    <td><a ng-click="delete(pessoa.id)">Excluir</a></td>
+                </tr>
+            </table>
+        </p>
 
-    <p><a href="${pageContext.request.contextPath}/pessoas/cadastrar.jsp">Cadastrar</a></p>
-</body>
+        <p><a href="${pageContext.request.contextPath}/pessoas/cadastrar.jsp">Cadastrar</a></p>
+    </body>
 </html>
