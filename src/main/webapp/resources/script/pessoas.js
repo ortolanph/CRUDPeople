@@ -7,7 +7,7 @@ pessoaApp.controller('PessoaController', ['$scope', '$http', function ($scope, $
 
         $scope.createPessoa = function () {
 
-            if(!$scope.isEmpty($scope.nome) && !$scope.isEmpty($scope.nome) && !$scope.isEmpty($scope.nome) ) {
+            if(!$scope.isEmpty($scope.nome) && !$scope.isEmpty($scope.endereco) && !$scope.isEmpty($scope.telefone) ) {
 
                 $scope.nome = $scope.nome.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -40,6 +40,7 @@ pessoaApp.controller('PessoaController', ['$scope', '$http', function ($scope, $
                         
                         if(!$scope.isEmpty($scope.deleteMessage)) {
                             $scope.resultadoPesquisa.result.message = $scope.deleteMessage;
+                            $scope.resultadoPesquisa.result.status = 'info';
                         }
                     })
                     .error(function (data) {

@@ -9,32 +9,27 @@
         <title>Alterar Pessoa</title>
     </head>
     <body ng-controller="PessoaController" ng-init="findById('${param['id']}')">
-        <h1>Alterar Pessoa</h1>
-        <fieldset>
-            <legend>Dados da Pessoa</legend>
-            <p ng-if="resultadoBusca.result.message">[{{resultadoBusca.result.status}}]: {{resultadoBusca.result.message}}</p>
-            <form ng-submit="update()">
-                <input type="text" ng-model="resultadoBusca.pessoa.id" />
-                <table>
-                    <tr>
-                        <td><strong>Nome</strong></td>
-                        <td><input type="text" ng-model="resultadoBusca.pessoa.nome" size="50" /></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Endereco</strong></td>
-                        <td><input type="text" ng-model="resultadoBusca.pessoa.endereco" size="50" /></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Telefone</strong></td>
-                        <td><input type="tel" ng-model="resultadoBusca.pessoa.telefone" 
-                                   pattern="[\(]\d{2}[\)]\d{5}[\-]\d{4}" 
-                                   title="Telefone (Formato: (99)99999-9999)"
-                                   size="14"/></td>
-                    </tr>
-                </table>
-                <p><input type="submit" value="Alterar" /></p>
-            </form>
-        </fieldset>
-        <p><a href="${pageContext.request.contextPath}/pessoas/pessoas.jsp">Voltar</a></p>
+        <div id="wrap">
+            <h1>Alterar Pessoa</h1>
+
+            <fieldset>
+                <legend>Dados da Pessoa</legend>
+
+                <form ng-submit="update()">
+                    <input type="hidden" ng-model="resultadoBusca.pessoa.id" />
+                    <p><span>Nome:</span>
+                    <input type="text" ng-model="resultadoBusca.pessoa.nome" size="50" /></p>
+                    <p><span>Endereco:</span>
+                    <input type="text" ng-model="resultadoBusca.pessoa.endereco" size="50" /></p>
+                    <p><span>Telefone:</span>
+                    <input  ng-model="resultadoBusca.pessoa.telefone" pattern="[\(]\d{2}[\)]\d{5}[\-]\d{4}" placeholder="(99)99999-9999" title="Telefone (Formato: (99)99999-9999)" size="14" type="tel"></p>
+                    <p><input type="submit" value="Alterar"></p>
+                </form>
+
+                <p ng-if="resultadoBusca.result.message" ng-class="{{resultadoBusca.result.status}}">{{resultadoBusca.result.message}}</p>
+            </fieldset>
+
+            <p><a href="${pageContext.request.contextPath}/pessoas/pessoas.jsp">Voltar</a></p>
+        </div>
     </body>
 </html>

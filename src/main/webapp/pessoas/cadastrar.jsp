@@ -9,31 +9,26 @@
         <title>Cadastrar Pessoa</title>
     </head>
     <body ng-controller="PessoaController">
-        <h1>Cadastrar Pessoa</h1>
-        <fieldset>
-            <legend>Dados da Pessoa</legend>
-            <p>{{message.result}}</p>
-            <form ng-submit="createPessoa()">
-                <table>
-                    <tr>
-                        <td><strong>Nome</strong></td>
-                        <td><input type="text" ng-model="nome" size="50" /></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Endereco</strong></td>
-                        <td><input type="text" ng-model="endereco" size="50" /></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Telefone</strong></td>
-                        <td><input type="tel" ng-model="telefone" 
-                                   pattern="[\(]\d{2}[\)]\d{5}[\-]\d{4}" 
-                                   title="Telefone (Formato: (99)99999-9999)"
-                                   size="14"/></td>
-                    </tr>
-                </table>
-                <p><input type="submit" value="Cadastrar" /></p>
-            </form>
-        </fieldset>
-        <p><a href="${pageContext.request.contextPath}/pessoas/pessoas.jsp">Voltar</a></p>
+		<div id="wrap">
+			<h1>Cadastrar Pessoa</h1>
+
+			<fieldset>
+				<legend>Dados da Pessoa</legend>
+
+				<form ng-submit="createPessoa()">
+					<p><span>* Nome:</span>
+					<input size="50" type="text" ng-model="nome"></p>
+					<p><span>* Endereco:</span>
+					<input size="50" type="text" ng-model="endereco"></p>
+					<p><span>* Telefone:</span>
+					<input pattern="[\(]\d{2}[\)]\d{5}[\-]\d{4}" placeholder="(99)99999-9999" title="Telefone (Formato: (99)99999-9999)" size="14" type="tel" ng-model="telefone"></p>
+					<p><input type="submit" value="Cadastrar"></p>
+				</form>
+
+				<p ng-if="message.result">{{message.result}}</p>
+			</fieldset>
+
+			<p><a href="${pageContext.request.contextPath}/pessoas/pessoas.jsp">Voltar</a></p>
+		<div>
     </body>
 </html>
